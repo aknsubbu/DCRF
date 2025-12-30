@@ -1,0 +1,91 @@
+Dynamic Causal Reasoning Framework with Graph Re-orientation
+Project Description
+The idea proposed is to create a three-stage pipeline that uses causal graphs to ensure responses are causally sound and safe relative to the queries. 
+Prelim Stage Design
+1.	Knowledge Graph Generation:
+a.	Extract entities, relationships and causal links from the knowledge base. 
+b.	Create a DAG (Directed Acyclic Graph) where the nodes are the entities and the edges are the causal relationships. 
+c.	Edge direction is what matters… (a->b means that a causes b, etc…)
+2.	Graph Re-orientation based on the Query
+a.	When a query comes in, the graph is rotated to make the query’s focal point the “target” variable. 
+b.	We can use Conditional Independence (Prune irrelevant nodes based on d-separation) and Ancestral graph extraction (Keep only the nodes that are the ancestor/descendant of the query var).
+c.	Example:
+i.	What causes X? Make X the sink, trace backward to the parents
+ii.	What are the effects of Y? Make Y the source, trace forward
+iii.	Does A affect B? Find paths between A and B, check for confounders
+3.	Causal Safety Validation
+a.	Checking the response against the re-oriented graph
+b.	Types of safety checks:
+i.	Causal Direction Validity
+ii.	Confounding Direction (If the response says a->b, if no direct relation check for a->c, c->b) 
+Algorithm Choices
+1.	Causal Discovery Algorithms
+a.	Constraint Based
+i.	PC Algorithm (Peter-Clark):
+1.	Learns causal structure from observational data
+2.	Uses conditional independence tests
+3.	Library: causal-learn, pgmpy
+ii.	FCI (Fast Causal Inference):
+1.	Handles latent confounders
+2.	Produces Partial Ancestral Graph (PAGs)
+3.	More robust but comp. expensive
+b.	Score-based
+i.	GES (Greedy Equivalence Search):
+1.	Searches through DAG space by scoring structure
+2.	Uses BIC or other scoring functions
+3.	Faster than constraint-based for large graphs
+ii.	NOTEARS (Non-combinatorial Optimization):
+1.	Formulates structure learning as continuous optimization
+2.	Uses neural networks: notears-pytorch
+3.	Scales better to high dimensions
+c.	Hybrid:
+i.	FGES (Fast GES)
+
+Dataset Options
+1.	General Causal Datasets
+a.	CauseNet
+i.	11M causal relations extracted from web to text
+ii.	Source: Wikipedia and news articles (causalnet.cs.uni-freiburg.de)
+b.	Event Causality (EventStoryLine)
+i.	News articles with annotated causal events
+ii.	258 docs and 5334 event mentions
+iii.	Temporal and Causal Annotations
+c.	BECAUSE Corpus
+i.	900 relations from web with explicit causality and linguistic features
+2.	Domain-Specific Datasets
+a.	Medical/Healthcare
+i.	MIMIC-III / MIMIC-IV
+1.	Electronic Health Records
+2.	Rich for causal inference (treatment->outcomes)
+3.	40,000+ patients, temporal data
+4.	Needs Approval
+ii.	Medical Causal Graphs (Xu et al.)
+1.	Manually curated disease symptom treatment graphs 
+2.	Based on medical lit
+iii.	PubMed Causality
+1.	Extract from biomedical literature
+2.	Use BioCause or BioNLP datasets
+3.	General Knowledge:
+a.	ConceptNet:
+i.	Semantic network with causal relations 
+ii.	Includes “Causes”, “HasEffect” relations
+iii.	21M Edges, Multiple Languages
+b.	WikiData
+i.	Can extract relations via SPARQL
+ii.	P828 (has cause), P1542 (has effect)
+c.	ATOMIC 
+i.	Common sense causal knowledge
+ii.	If-then relations
+iii.	877K everyday events and effects
+Benchmarks Datasets for Causal Discovery
+1.	Sachs Dataset 
+a.	Protein signaling networks
+b.	Ground truth causal graph available
+c.	Standard benchmark
+2.	Tuebingen Cause-Effect Pairs 
+a.	108 pairs with known causal direction
+b.	Various domains
+c.	For testing causal direction algorithms
+3.	Neuropathic Pain (PAIN) Dataset 
+a.	Clinical trial data
+b.	For causal effect estimation
