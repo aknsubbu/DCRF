@@ -1,0 +1,47 @@
+[
+  {
+    "test": "Mann-Whitney U",
+    "statistic": 2909.0,
+    "p_value": 7.09005682781394e-66,
+    "effect_size": -0.9311577054146156,
+    "effect_size_type": "Rank-biserial",
+    "variable": "treatment",
+    "classification": "Non-normal-Large",
+    "n_group1": 608,
+    "n_group2": 139,
+    "mean_group1": 2.4112967999916193,
+    "mean_group2": 6.432417812422448,
+    "mean_diff": -4.021121012430829,
+    "is_significant": true
+  },
+  {
+    "test": "Mann-Whitney U",
+    "statistic": 34081.0,
+    "p_value": 1.110422772446051e-33,
+    "effect_size": -0.5113835125448029,
+    "effect_size_type": "Rank-biserial",
+    "variable": "mu1",
+    "classification": "Non-normal-Large",
+    "n_group1": 375,
+    "n_group2": 372,
+    "mean_group1": 2.321080418600172,
+    "mean_group2": 4.0047563799638715,
+    "mean_diff": -1.6836759613636993,
+    "is_significant": true
+  },
+  {
+    "test": "Mann-Whitney U",
+    "statistic": NaN,
+    "p_value": NaN,
+    "effect_size": NaN,
+    "effect_size_type": "Rank-biserial",
+    "variable": "x18",
+    "classification": "Non-normal-Large",
+    "n_group1": 747,
+    "n_group2": 0,
+    "mean_group1": 3.1595375238575967,
+    "mean_group2": NaN,
+    "mean_diff": NaN,
+    "is_significant": false
+  }
+]

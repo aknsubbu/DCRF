@@ -1,0 +1,4 @@
+test,statistic,p_value,effect_size,effect_size_type,variable,classification,n_group1,n_group2,mean_group1,mean_group2,mean_diff,is_significant
+Mann-Whitney U,2909.0,7.09005682781394e-66,-0.9311577054146156,Rank-biserial,treatment,Non-normal-Large,608,139,2.4112967999916193,6.432417812422448,-4.021121012430829,True
+Mann-Whitney U,34081.0,1.110422772446051e-33,-0.5113835125448029,Rank-biserial,mu1,Non-normal-Large,375,372,2.321080418600172,4.0047563799638715,-1.6836759613636993,True
+Mann-Whitney U,,,,Rank-biserial,x18,Non-normal-Large,747,0,3.1595375238575967,,,False

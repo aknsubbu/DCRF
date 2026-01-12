@@ -1,0 +1,41 @@
+[
+  {
+    "variable": "treatment",
+    "r2_full": 0.7361204071142403,
+    "r2_reduced": 0.2532081366821459,
+    "variance_contribution": 0.4829122704320944,
+    "variance_contribution_pct": 48.29122704320944,
+    "f_statistic": 1359.7255210499798,
+    "p_value": 1.1102230246251565e-16,
+    "is_significant": true,
+    "n_samples": 747,
+    "n_predictors_full": 3,
+    "n_predictors_reduced": 2
+  },
+  {
+    "variable": "mu1",
+    "r2_full": 0.7361204071142403,
+    "r2_reduced": 0.5160577690432769,
+    "variance_contribution": 0.22006263807096338,
+    "variance_contribution_pct": 22.00626380709634,
+    "f_statistic": 619.6255583792416,
+    "p_value": 1.1102230246251565e-16,
+    "is_significant": true,
+    "n_samples": 747,
+    "n_predictors_full": 3,
+    "n_predictors_reduced": 2
+  },
+  {
+    "variable": "x18",
+    "r2_full": 0.7361204071142403,
+    "r2_reduced": 0.7361065788591983,
+    "variance_contribution": 1.3828255042036552e-05,
+    "variance_contribution_pct": 0.0013828255042036552,
+    "f_statistic": 0.03893591536910249,
+    "p_value": 0.8436296425430996,
+    "is_significant": false,
+    "n_samples": 747,
+    "n_predictors_full": 3,
+    "n_predictors_reduced": 2
+  }
+]

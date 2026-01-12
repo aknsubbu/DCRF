@@ -1,0 +1,4 @@
+variable,n_samples,is_normal,is_small_sample,distribution_type,sample_size_category,classification,shapiro_statistic,shapiro_p_value,mean,std,median,min,max
+treatment,747,False,False,Non-normal,Large,Non-normal-Large,0.47373428671336326,3.8335053821159725e-42,0.18607764390896922,0.3894300632003135,0.0,0.0,1.0
+mu1,747,False,False,Non-normal,Large,Non-normal-Large,0.9768323381104903,1.690619586415669e-09,6.4485802467817965,0.4547657736917239,6.419094645514,5.59164731549982,7.95480367858421
+x18,747,False,False,Non-normal,Large,Non-normal-Large,0.1806088187023953,8.32457375535461e-49,0.963855421686747,0.18677485832359544,1.0,0.0,1.0

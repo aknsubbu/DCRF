@@ -1,0 +1,22 @@
+{
+  "method": "avg_impact",
+  "target_pct": 0.75,
+  "target_impact": 12.562391495009205,
+  "total_impact": 16.74985532667894,
+  "count_per_quadrant": 1,
+  "total_selected": 3,
+  "cumulative_impact": 5.566984967783314,
+  "coverage_pct": 33.23601821752034,
+  "target_achieved": false,
+  "selected_variables": {
+    "Q1": [
+      "treatment"
+    ],
+    "Q2": [
+      "mu1"
+    ],
+    "Q3": [
+      "x18"
+    ]
+  }
+}

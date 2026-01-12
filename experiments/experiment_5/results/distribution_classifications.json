@@ -1,0 +1,50 @@
+[
+  {
+    "variable": "treatment",
+    "n_samples": 747,
+    "is_normal": false,
+    "is_small_sample": false,
+    "distribution_type": "Non-normal",
+    "sample_size_category": "Large",
+    "classification": "Non-normal-Large",
+    "shapiro_statistic": 0.47373428671336326,
+    "shapiro_p_value": 3.8335053821159725e-42,
+    "mean": 0.18607764390896922,
+    "std": 0.3894300632003135,
+    "median": 0.0,
+    "min": 0,
+    "max": 1
+  },
+  {
+    "variable": "mu1",
+    "n_samples": 747,
+    "is_normal": false,
+    "is_small_sample": false,
+    "distribution_type": "Non-normal",
+    "sample_size_category": "Large",
+    "classification": "Non-normal-Large",
+    "shapiro_statistic": 0.9768323381104903,
+    "shapiro_p_value": 1.690619586415669e-09,
+    "mean": 6.4485802467817965,
+    "std": 0.4547657736917239,
+    "median": 6.419094645514,
+    "min": 5.59164731549982,
+    "max": 7.95480367858421
+  },
+  {
+    "variable": "x18",
+    "n_samples": 747,
+    "is_normal": false,
+    "is_small_sample": false,
+    "distribution_type": "Non-normal",
+    "sample_size_category": "Large",
+    "classification": "Non-normal-Large",
+    "shapiro_statistic": 0.1806088187023953,
+    "shapiro_p_value": 8.32457375535461e-49,
+    "mean": 0.963855421686747,
+    "std": 0.18677485832359544,
+    "median": 1.0,
+    "min": 0,
+    "max": 1
+  }
+]
