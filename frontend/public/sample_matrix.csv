@@ -1,0 +1,6 @@
+,Treatment,Confounder1,Confounder2,Mediator,Outcome
+Treatment,0,0,0,1,1
+Confounder1,1,0,0,0,1
+Confounder2,1,0,0,1,0
+Mediator,0,0,0,0,1
+Outcome,0,0,0,0,0

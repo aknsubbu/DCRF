@@ -1,0 +1,274 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap");
+
+@import "tailwindcss";
+
+@plugin '../hero.ts';
+
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Terminal Color Palette */
+  --color-terminal-black: #0a0a0a;
+  --color-terminal-green: #33ff00;
+  --color-terminal-amber: #ffb000;
+  --color-terminal-red: #ff3333;
+  --color-terminal-green-muted: #1f521f;
+
+  /* Fonts */
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --font-sans: "JetBrains Mono", "Fira Code", monospace;
+
+  /* Animations */
+  --animate-blink: blink 1s step-end infinite;
+  --animate-typing: typing 3.5s steps(40, end);
+  --animate-scanline: scanline 8s linear infinite;
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes scanline {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-terminal-green-muted);
+    border-radius: 0 !important;
+  }
+
+  body {
+    background-color: var(--color-terminal-black);
+    color: var(--color-terminal-green);
+    font-family: var(--font-mono);
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-terminal-green);
+    color: var(--color-terminal-black);
+  }
+}
+
+@layer components {
+  /* CRT Scanline Overlay */
+  .crt-overlay {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    z-index: 9999;
+  }
+
+  /* Text Glow Effects */
+  .text-glow {
+    text-shadow: 0 0 5px rgba(51, 255, 0, 0.5);
+  }
+
+  .text-glow-strong {
+    text-shadow:
+      0 0 5px rgba(51, 255, 0, 0.8),
+      0 0 10px rgba(51, 255, 0, 0.6),
+      0 0 15px rgba(51, 255, 0, 0.4);
+  }
+
+  .text-glow-amber {
+    text-shadow: 0 0 5px rgba(255, 176, 0, 0.5);
+  }
+
+  /* Terminal Button */
+  .btn-terminal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-terminal-green);
+    background-color: var(--color-terminal-black);
+    color: var(--color-terminal-green);
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.1s;
+  }
+
+  .btn-terminal:hover:not(:disabled) {
+    background-color: var(--color-terminal-green);
+    color: var(--color-terminal-black);
+  }
+
+  .btn-terminal:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  .btn-terminal:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Terminal Input */
+  .input-terminal {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--color-terminal-green);
+    color: var(--color-terminal-green);
+    font-family: var(--font-mono);
+    padding: 0.25rem 0;
+    outline: none;
+    caret-color: var(--color-terminal-green);
+  }
+
+  .input-terminal:focus {
+    border-color: var(--color-terminal-amber);
+  }
+
+  /* Terminal Window/Card */
+  .terminal-window {
+    border: 1px solid var(--color-terminal-green-muted);
+    background-color: var(--color-terminal-black);
+    padding: 1rem;
+  }
+
+  .terminal-window-header {
+    border-bottom: 1px solid var(--color-terminal-green-muted);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-terminal-green);
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(51, 255, 0, 0.5);
+  }
+
+  /* Blinking Cursor */
+  .cursor {
+    display: inline-block;
+    width: 0.5rem;
+    height: 1.25rem;
+    background-color: var(--color-terminal-green);
+    animation: blink 1s step-end infinite;
+    margin-left: 0.25rem;
+    vertical-align: middle;
+  }
+
+  /* Status Indicators */
+  .status-ok::before {
+    content: "[OK] ";
+    color: var(--color-terminal-green);
+  }
+
+  .status-err::before {
+    content: "[ERR] ";
+    color: var(--color-terminal-red);
+  }
+
+  .status-warn::before {
+    content: "[WARN] ";
+    color: var(--color-terminal-amber);
+  }
+
+  /* Box Shadows */
+  .shadow-glow-green {
+    box-shadow:
+      0 0 5px rgba(51, 255, 0, 0.5),
+      0 0 10px rgba(51, 255, 0, 0.3);
+  }
+
+  .shadow-glow-amber {
+    box-shadow:
+      0 0 5px rgba(255, 176, 0, 0.5),
+      0 0 10px rgba(255, 176, 0, 0.3);
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-terminal-black);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-terminal-green-muted);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-terminal-green);
+  }
+}
+
+@layer utilities {
+  .prompt::before {
+    content: "user@causal-graph:~$ ";
+    color: var(--color-terminal-green);
+    opacity: 0.7;
+  }
+
+  .bg-terminal-black {
+    background-color: var(--color-terminal-black);
+  }
+
+  .bg-terminal-green {
+    background-color: var(--color-terminal-green);
+  }
+
+  .text-terminal-green {
+    color: var(--color-terminal-green);
+  }
+
+  .text-terminal-amber {
+    color: var(--color-terminal-amber);
+  }
+
+  .text-terminal-red {
+    color: var(--color-terminal-red);
+  }
+
+  .border-terminal-green {
+    border-color: var(--color-terminal-green);
+  }
+
+  .border-terminal-green-muted {
+    border-color: var(--color-terminal-green-muted);
+  }
+
+  .border-terminal-amber {
+    border-color: var(--color-terminal-amber);
+  }
+}

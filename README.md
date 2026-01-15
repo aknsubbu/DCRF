@@ -17,6 +17,7 @@ DCRF provides:
 - [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
+- [Frontend Application](#frontend-application)
 - [Experiments Overview](#experiments-overview)
   - [Causal Variable Analysis Suite](#causal-variable-analysis-suite)
   - [FCI Temporal Ordering Experiments](#fci-temporal-ordering-experiments)
@@ -32,6 +33,7 @@ DCRF provides:
 ```
 DCRF/
 ├── README.md                          # This file
+├── AGENTS.md                          # Coding agent instructions
 ├── data/
 │   └── ihdp.csv                       # IHDP dataset (Infant Health and Development Program)
 ├── experiments/
@@ -40,9 +42,15 @@ DCRF/
 │   ├── experiment_3/                  # Variable role classification
 │   ├── experiment_4/                  # 75% selection rule
 │   └── experiment_5/                  # Statistical test application
+├── frontend/                          # Next.js causal graph visualizer
+│   ├── app/                           # Next.js App Router pages
+│   ├── components/graph/              # Graph visualization components
+│   ├── lib/                           # Utility functions
+│   └── types/                         # TypeScript type definitions
 ├── docs/
 │   ├── Desc Doc.txt                   # Project description and algorithm choices
 │   ├── Lit Survey.txt                 # Literature survey
+│   ├── Variance_Based_Range_Estimation_Experiments.md  # Experiment framework docs
 │   └── walkthrough- Temporal Ordering.md  # FCI experiments walkthrough
 ├── fci.ipynb                          # FCI algorithm notebook with temporal experiments
 ├── causal.ipynb                       # Causal analysis notebook
@@ -61,8 +69,9 @@ DCRF/
 
 - Python 3.8+
 - Jupyter Notebook
+- Node.js 18+ (for frontend)
 
-### Dependencies
+### Python Dependencies
 
 Install required packages:
 
@@ -71,17 +80,31 @@ pip install pandas numpy scipy scikit-learn matplotlib seaborn
 pip install causal-learn networkx statsmodels
 ```
 
+### Frontend Dependencies
+
+```bash
+cd frontend
+npm install
+```
+
 ### Quick Setup
 
 ```bash
 # Clone or navigate to project directory
 cd /Volumes/DevDrive/DCRF
 
-# Install dependencies
+# Python setup
+python -m venv .venv
+source .venv/bin/activate  # On macOS/Linux
 pip install -r requirements.txt  # if available, or use command above
 
 # Launch Jupyter for interactive exploration
 jupyter notebook
+
+# Frontend setup (in separate terminal)
+cd frontend
+npm install
+npm run dev
 ```
 
 ---
@@ -118,6 +141,54 @@ python run_experiment_5a.py
 python run_experiment_5b.py
 python run_experiment_5c.py
 ```
+
+---
+
+## Frontend Application
+
+DCRF includes a **terminal-themed web application** for visualizing and exploring causal graphs interactively.
+
+### Features
+
+- **CSV Upload** - Import adjacency matrices with drag-and-drop or file selection
+- **Interactive Graph** - Pan, zoom, and click nodes using React Flow
+- **Path Finding** - BFS-based algorithm to find all paths between selected nodes
+- **Path Highlighting** - Visualize discovered paths with animated edge highlighting
+- **Auto Layout** - Dagre-powered automatic graph layout
+- **Terminal Theme** - Retro CRT-style UI with green-on-black aesthetic
+
+### Tech Stack
+
+- **Next.js 15** - React framework with App Router & Turbopack
+- **React Flow** (@xyflow/react) - Graph visualization
+- **Dagre** - Graph layout algorithm
+- **HeroUI v2** - UI component library
+- **Tailwind CSS 4** - Utility-first styling
+- **TypeScript 5.6** - Type safety
+
+### Running the Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev     # Development server at http://localhost:3000
+```
+
+### CSV Format
+
+Upload an adjacency matrix CSV file where:
+- First row contains column headers (node names)
+- First column contains row labels (node names)
+- Cell values represent edge weights (0 = no edge, 1+ = edge exists)
+
+```csv
+,A,B,C
+A,0,1,0
+B,0,0,1
+C,0,0,0
+```
+
+See [frontend/README.md](frontend/README.md) for detailed frontend documentation.
 
 ---
 
@@ -622,6 +693,7 @@ If you use DCRF in your research, please cite:
 3. **Practical**: Balances statistical rigor with usability
 4. **Validated**: Multiple methods, cross-validation, statistical tests
 5. **Transparent**: Clear logic, interpretable results, reproducible
+6. **Visual**: Interactive graph exploration via web frontend
 
 ### Core Philosophy
 

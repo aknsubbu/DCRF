@@ -4,7 +4,9 @@
 
 **Dynamic Causal Reasoning Framework (DCRF)** - A Python toolkit for causal discovery, analysis, and reasoning. The framework implements FCI (Fast Causal Inference) algorithm for causal structure learning, multiple causal effect estimation methods, and statistical validation pipelines.
 
-**Tech Stack:** Python 3.8+, pandas, numpy, scipy, scikit-learn, causal-learn, networkx, statsmodels, matplotlib, seaborn
+**Tech Stack:** 
+- **Backend/Analysis:** Python 3.8+, pandas, numpy, scipy, scikit-learn, causal-learn, networkx, statsmodels, matplotlib, seaborn
+- **Frontend:** Next.js 15, React 18, TypeScript, React Flow, HeroUI, Tailwind CSS 4
 
 ## Build/Run Commands
 
@@ -30,6 +32,15 @@ python experiments/experiment_2/run_experiment_2a.py
 # Run Jupyter notebooks
 jupyter notebook fci.ipynb
 jupyter notebook causal.ipynb
+```
+
+### Running Frontend
+```bash
+cd frontend
+npm install
+npm run dev     # Development server with Turbopack
+npm run build   # Production build
+npm run lint    # ESLint with auto-fix
 ```
 
 ### Testing
@@ -229,6 +240,8 @@ output_path.mkdir(exist_ok=True, parents=True)
 | `fci_adjacency_matrix.csv` | FCI-generated PAG adjacency matrix |
 | `experiments/experiment_N/` | Experiment implementations (N=1-5) |
 | `experiments/experiment_1/utils/` | Shared utilities for data loading, PAG analysis, effect estimation |
+| `frontend/` | Next.js causal graph visualization app |
+| `docs/` | Documentation including literature survey and experiment walkthroughs |
 
 ## Script Entry Points
 All experiment scripts follow this pattern:
@@ -246,3 +259,36 @@ if __name__ == "__main__":
     print("EXPERIMENT XY COMPLETED")
     print("=" * 80)
 ```
+
+## Frontend Development
+
+The frontend is a Next.js 15 application with React Flow for graph visualization.
+
+### Frontend File Structure
+```
+frontend/
+├── app/                    # Next.js App Router
+│   ├── layout.tsx          # Root layout with providers
+│   ├── page.tsx            # Main visualization page
+│   └── providers.tsx       # HeroUI + Theme providers
+├── components/
+│   └── graph/              # Graph visualization components
+│       ├── GraphCanvas.tsx # React Flow canvas wrapper
+│       ├── TerminalNode.tsx# Custom styled node component
+│       ├── UploadSection.tsx# CSV upload with dropzone
+│       ├── PathFinderPanel.tsx# Path search controls
+│       └── ...
+├── lib/                    # Utility functions
+│   ├── graphUtils.ts       # Graph conversion & layout
+│   └── pathFinding.ts      # BFS path algorithms
+├── types/                  # TypeScript type definitions
+└── styles/
+    └── globals.css         # Global styles & terminal theme
+```
+
+### Frontend Conventions
+- **Components:** PascalCase in `components/` directory
+- **Utilities:** camelCase in `lib/` directory  
+- **Types:** PascalCase interfaces in `types/` directory
+- **Styling:** Tailwind CSS 4 utility classes, terminal/CRT theme
+- **State:** React hooks, no external state management
